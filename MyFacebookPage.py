@@ -5,8 +5,6 @@ import re
 
 # VARIABLES AND SUCH
 username = "unholymist"
-name = "Nicolas Velastegui"
-password = "password"
 
 # --------------------------------------------------------------------------------
 # STATUS DATABASE ----------------------------------------------------------------
@@ -18,7 +16,7 @@ topics.close()
 # --------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------------
-# USER DATABASE ------------------------------------------------------------------
+# USER DATABASE | Extracting List Of User's Friends-------------------------------
 
 # First we need to open the users.csv file to find the line pertaining to the currently
 # logged-in user.
@@ -45,6 +43,33 @@ user_friendlist = re.sub('^\w*\s\w*, ','', user_friendlist)
 # Matches: any combination of word characters followed by a single space or none then followed by any combination of word characters
 # We do it again for the password:
 user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
+
+# --------------------------------------------------------------------------------
+# USER DATABASE | Extracting List Of All Members ---------------------------------
+
+# In this case, we just need to take the first element from each line.
+# We will cycle through is in the previous manner:
+# (Notice I closed the file earlier. Now, reopening it will reset the
+# position of the pointer in the file.)
+
+users = open("users.csv","r")
+user_list = ""
+
+for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
+	current_line = users.readline() # Read the current line. 
+	if current_line == "": # If it's empty, then we're at the end of the file.
+		break
+	# Instead of trying to extract the first part of the string (the username) we can
+	# just set up a regex to remove everything after the first term.
+	if iteration == 1:
+		user_list = user_list + re.sub(',[\w\d\s,]*$','', current_line)
+	else:
+		user_list = user_list + ", " + re.sub(',[\w\d\s,]*$','', current_line)
+
+#user_list = re.sub('\s',', ',user_list)
+
+users.close()
+
 
 # END USER DATABASE
 # --------------------------------------------------------------------------------
@@ -316,7 +341,7 @@ print "</td>"
 
 print "<td width=\"50%\" align=\"left\" valign=\"middle\">"
 print "<font color=\"white\"><h2>Other Raccooners</h2></font>"
-print "<font color=\"white\"><p>Coontastic TheCoonster CooningTime</p></font>"
+print "<font color=\"white\"><p>" + user_list +"</p></font>"
 print "</td>"
 
 print "<td width=\"25%\">"
