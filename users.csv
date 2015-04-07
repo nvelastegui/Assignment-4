@@ -1,5 +1,6 @@
-name, username, password, friends
-John Smith, JS, JSrules, friends
-Mary Bob, MBebe, password, friends
-Sample Name,user_name,password
-Sample Name,user_name,password
+username, name, password, friends
+unholymist, Nicolas Velastegui, p4SSword, randomdude, padowan, bananaLover
+randomedude, John Smith, password, 
+padowan, Luke Skywalker, password, 
+bananaLover, George Costanza, password, 
+monkey, Johnny, password, 

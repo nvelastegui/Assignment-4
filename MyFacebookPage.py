@@ -1,5 +1,8 @@
 #! /usr/bin/python
 
+import sys
+import re
+
 # VARIABLES AND SUCH
 username = "unholymist"
 name = "Nicolas Velastegui"
@@ -17,11 +20,42 @@ topics.close()
 # --------------------------------------------------------------------------------
 # USER DATABASE ------------------------------------------------------------------
 
+# First we need to open the users.csv file to find the line pertaining to the currently
+# logged-in user.
 users = open("users.csv","r")
+user_friendlist = ""
+for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
+	current_line = users.readline() # Read the current line. 
+	if current_line == "": # If it's empty, then we're at the end of the file.
+		break
+	if current_line.startswith(username): # username is the first value on each line.
+		user_friendlist = current_line
+		break
 users.close()
+
+# user_friendlist still has a lot of garbage attached to it
+# (username, full name, and password) so we have to better format it
+
+# We know the username, so we can easily remove it by using the strip function.
+user_friendlist = user_friendlist.strip(username + ", ")
+
+# However, we must now remove the full name and password from the string.
+# We can use regular expressions for this, notably:
+user_friendlist = re.sub('^\w*\s\w*, ','', user_friendlist)
+# Matches: any combination of word characters followed by a single space or none then followed by any combination of word characters
+# We do it again for the password:
+user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
 
 # END USER DATABASE
 # --------------------------------------------------------------------------------
+
+# So to construct this script I first wrote out an html file for the general form,
+# as recommended in the assignment sheet. I realize that instead of having a print for every
+# line I could have had print """ """, which would have given more clarity to the html.
+# However, I felt the method used below allowed me more freedom in inserting the 
+# required user-specific values.
+
+# The html can be seen easily in the included .html version of the feed page.
 
 print "Content-Type:text/html;charset=iso-8859-1\n\n"
 print "<html>"
@@ -52,7 +86,7 @@ print "<tr>"
 
 # First column: "Hey, username."
 print "<td align=\"left\" valign=\"top\" width=\"30%\">"
-print "<font color=\"white\"><h1>Hey, " + username + ".</h1></font>"
+print "<font color=\"white\"><h1>Hey, " + username + ".</h1></font>" # adds the user's username to the header
 print "</td>"
 
 # Second column: Placeholder
@@ -133,13 +167,20 @@ print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"gray\">"
 # The middle column displays a coon (a status update). The status updates are displayed from newest at the top
 # to oldest at the bottom.
 
+# Essentially, for this to work, the program must cycle through the topic.csv file and retract only the useful lines from it.
+# ie. members of the user's friends list.
+# We therefore require a string containing the names of all of the user's friends.
+
 # 10
+# Each of these sections represents a table row.
+current_user = "Test user"
+current_status = "Test Status"
 print "<tr>"
 print "<td width=\"25%\">"
 print "</td>"
 print "<td width=\"50%\">"
-print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-print "<font color=\"white\"><p>The raccoon, sometimes spelled racoon, also known as the common raccoon, North American raccoon, northern raccoon and colloquially as coon, is a medium-sized mammal native to North America.</p></font>"
+print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
+print "<font color=\"white\"><p>"+ current_status + "</p></font>"
 print "</td>"
 print "<td width=\"25%\">"
 print "</td>"
@@ -264,14 +305,16 @@ print "</table>"
 
 # --------------------------------------------------------------------------------
 # OTHER RACCOONERS
-print "<table width=\"100%\" bgcolor=\"#959595\">"
+print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"#959595\">" # Begin Table For Section
+
+# All Members Of Raccooner.
 print "<tr>"
 print "</tr>"
 print "<tr>"
 print "<td width=\"25%\">"
 print "</td>"
 
-print "<td width=\"50%\" align=\"center\" valign=\"middle\">"
+print "<td width=\"50%\" align=\"left\" valign=\"middle\">"
 print "<font color=\"white\"><h2>Other Raccooners</h2></font>"
 print "<font color=\"white\"><p>Coontastic TheCoonster CooningTime</p></font>"
 print "</td>"
@@ -279,8 +322,27 @@ print "</td>"
 print "<td width=\"25%\">"
 print "</td>"
 print "</tr>"
-print "</table>"
 
+# User's Friends.
+# (Using previously created user_friendlist)
+print "<tr>"
+print "</tr>"
+print "<tr>"
+print "<td width=\"25%\">"
+print "</td>"
+
+print "<td width=\"50%\" align=\"left\" valign=\"middle\">"
+print "<font color=\"white\"><h2>" + username + "\'s Friends</h2></font>"
+print "<font color=\"white\"><p>" + user_friendlist + "</p></font>"
+print "</td>"
+
+print "<td width=\"25%\">"
+print "</td>"
+print "</tr>"
+
+print "</table>" # End Table For Section
+
+# Add a member to your friendlist section
 print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"#959595\">"
 print "<tr>"
 print "<td width=\"25%\">"
@@ -296,8 +358,6 @@ print "<td width=\"25%\">"
 print "</td>"
 print "</tr>"
 print "</table>"
-
-print  "<p><font color=\"white\">" + all_topics + "</font></p>"
 
 # End Of Body
 # and End of HTML
