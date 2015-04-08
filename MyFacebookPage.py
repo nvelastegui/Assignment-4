@@ -1,10 +1,9 @@
 #! /usr/bin/python
 
-import sys
 import re
 
 # VARIABLES AND SUCH
-username = "unholymist"
+username = "randomdude"
 
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of User's Friends-------------------------------
@@ -176,7 +175,6 @@ print "</table>"
 
 # NEWS FEED (10 Entries)
 
-print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"gray\">"
 # The news feed is a table separated into 10 rows and 3 columns. The left and right
 # columns are empty. The middle column displays a status update. The status
 # updates are displayed from newest at the top to oldest at the bottom.
@@ -186,226 +184,49 @@ print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"gray\">"
 # We therefore require a string containing the names of all of the user's friends
 # (which we created earlier).
 
-# 10
-# Each of these sections represents a table row.
-
-
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
-# print "<font color=\"white\"><p>"+ current_status + "</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
+print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"gray\">"
 
 topics = open("topic.csv","r")
 
-user_friendlist_merged = re.sub(', ','',user_friendlist)
-
-
+# Variables to hold current user and current status.
 current_user = ""
 current_status = ""
 
-status_count = 0 # Number of status updates already displayed.
-#for number in range(1, 5000): # Similar to before, we will have a maximum number of statuses of 5000.
+# Number of status updates already displayed.
+status_count = 0
 
-	#print "<tr><font color=\"white\">" + str(number) + "</font></tr>"
+# For the feed to be output in reverse chronological order (a-la Twitter),
+# we use a string which is concatenated-to at the end of each successful iteration below.
+reverse_output = ""
 
-	# if status_count > 10:
-	# 	break
+# Similar to before, we will have a maximum number of statuses of 5000.
+for iteration in range(0,5000):
 
+	if status_count > 10:
+	 	break
 
-	# if current_user == "":
-	# 	break
+	current_user = topics.readline()
+	# This operation seemed to be adding spaces to the string, which caused problems later on.
+	# Any added spaces are removed with the command below:
+	current_user = re.sub('\s','',current_user)
 
-current_user = topics.readline()
-current_status = topics.readline()
-current_user = re.sub('\s','',current_user)
-print "<tr><font color=\"white\">" + current_user + current_status + "</font></tr>"
+	# If the line is empty, we break out of the loop and save some CPU cycles.
+	if current_user == "":
+	 	break
 
-if current_user in user_friendlist_merged:
-	print "<tr><font color=\"white\">word</font></tr>"
-	# Print a new row with the appropriate columns.
-	print "<tr><td width=\"25%\"></td><td width=\"50%\">"
-	print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
-	print "<font color=\"white\"><p>"+ current_status + "</p></font>"
-	print "</td><td width=\"25%\"></td></tr>"
-	status_count += 1
-	print "<tr><font color=\"white\">" + str(status_count) + "</font></tr>"
+	current_status = topics.readline()
 
-current_user = topics.readline()
-current_status = topics.readline()
-current_user = re.sub('\s','',current_user)
-print "<tr><font color=\"white\">" + current_user + current_status + "</font></tr>"
+	# Now we check if current_user is on the friend's list.
+	# If so, we add it to the feed. (Print a new row with the appropriate columns.)
+	if current_user in user_friendlist:
+		reverse_output = "<tr><td width=\"25%\"></td><td width=\"50%\"><font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font><font color=\"white\"><p>" + current_status + "</p></font></td><td width=\"25%\"></td></tr>" + reverse_output
+		# We're sure to increase the status_count by 1.
+		status_count += 1
 
-if current_user in user_friendlist_merged:
-	print "<tr><font color=\"white\">word</font></tr>"
-	# Print a new row with the appropriate columns.
-	print "<tr><td width=\"25%\"></td><td width=\"50%\">"
-	print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
-	print "<font color=\"white\"><p>"+ current_status + "</p></font>"
-	print "</td><td width=\"25%\"></td></tr>"
-	status_count += 1
-	print "<tr><font color=\"white\">" + str(status_count) + "</font></tr>"
+print reverse_output
 
-current_user = topics.readline()
-current_status = topics.readline()
-current_user = re.sub('\s','',current_user)
-print "<tr><font color=\"white\">" + current_user + current_status + "</font></tr>"
-
-if current_user in user_friendlist_merged:
-	print "<tr><font color=\"white\">word</font></tr>"
-	# Print a new row with the appropriate columns.
-	print "<tr><td width=\"25%\"></td><td width=\"50%\">"
-	print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
-	print "<font color=\"white\"><p>"+ current_status + "</p></font>"
-	print "</td><td width=\"25%\"></td></tr>"
-	status_count += 1
-	print "<tr><font color=\"white\">" + str(status_count) + "</font></tr>"
-
-current_user = topics.readline()
-current_status = topics.readline()
-current_user = re.sub('\s','',current_user)
-print "<tr><font color=\"white\">" + current_user + current_status + "</font></tr>"
-
-if current_user in user_friendlist_merged:
-	print "<tr><font color=\"white\">word</font></tr>"
-	# Print a new row with the appropriate columns.
-	print "<tr><td width=\"25%\"></td><td width=\"50%\">"
-	print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
-	print "<font color=\"white\"><p>"+ current_status + "</p></font>"
-	print "</td><td width=\"25%\"></td></tr>"
-	status_count += 1
-	print "<tr><font color=\"white\">" + str(status_count) + "</font></tr>"
-
-current_user = topics.readline()
-current_status = topics.readline()
-current_user = re.sub('\s','',current_user)
-	#print "<tr><font color=\"white\">" + current_user + current_status + "</font></tr>"
-
-if current_user in user_friendlist_merged:
-	print "<tr><font color=\"white\">word</font></tr>"
-	# Print a new row with the appropriate columns.
-	print "<tr><td width=\"25%\"></td><td width=\"50%\">"
-	print "<font color=\"white\"><h3 align=\"left\">" + current_user + " says:</h3></font>"
-	print "<font color=\"white\"><p>"+ current_status + "</p></font>"
-	print "</td><td width=\"25%\"></td></tr>"
-	status_count += 1
-	print "<tr><font color=\"white\">" + str(status_count) + "</font></tr>"
-
+# Once we've traversed the topics file, we can close it.
 topics.close()
-
-
-# # 9
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>This is a new line.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 8
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 7
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 6
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 5
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 4
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 3
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 2
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
-
-# # 1
-# print "<tr>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "<td width=\"50%\">"
-# print "<font color=\"white\"><h3 align=\"left\">User_1 says:</h3></font>"
-# print "<font color=\"white\"><p>Raccoons be cool, yo.</p></font>"
-# print "</td>"
-# print "<td width=\"25%\">"
-# print "</td>"
-# print "</tr>"
 
 # End table
 print "</table>"
