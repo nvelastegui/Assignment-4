@@ -1,5 +1,10 @@
 #! /usr/bin/python
 
+# COMP 206 Assignment 4
+# MyFacebookPage.py
+# Coded by Nicolas Velastegui
+# ID: 260521419
+
 import re
 
 # VARIABLES AND SUCH
