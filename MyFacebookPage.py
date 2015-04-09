@@ -3,7 +3,7 @@
 import re
 
 # VARIABLES AND SUCH
-username = "randomdude"
+username = "unholymist"
 
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of User's Friends-------------------------------
@@ -158,12 +158,19 @@ print "</td>"
 print "<td width=\"50%\" align=\"left\">"
 print "<h2><font color=\"white\">Send a message:</font></h2>"
 
-# SEND A STATUS FORM
-print "<form name=\"statusUpdate\" action=\"MyFacebookPage.py\" method=\"get\">"
-print "<input type=\"text\" name=\"newStatus\">"
+# SEND NEW STATUS FORM
+# Form begins...
+# Notice hidden tag for current username.
+print "<form name=\"statusUpdate\" action=\"updateStatus.py\" method=\"post\">"
+# Use a text area for input. Call it newStatus.
+print "<input type=\"hidden\" name=\"username\" value=\"" + username + "\">"
+print "<textarea name=\"newStatus\" wrap=\"virtual\" cols=\"80%\" rows=\"5\"></textarea>"
+# Place submit button.
 print "<input type=\"submit\" value=\"Send it to the raccoon world!\">"
+# End form.
 print "</form>"
 # END OF NEW STATUS FORM
+
 print "</td>"
 print "<td width=\"25%\">"
 print "</td>"
