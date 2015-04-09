@@ -105,6 +105,5 @@ print "<input type=\"hidden\" name=\"username\" value=\"" + username + "\">"
 print "<input type=\"submit\" value=\"To the feed bowl!\">"
 print "</form>"
 
-#print "<font color=\"white\"><h2>" + newStatus + "</h2></font>"
 print "</body></html>"
 
