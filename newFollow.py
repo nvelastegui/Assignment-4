@@ -14,6 +14,9 @@ import os, sys, re
 # --------------------------------------------------------------------------------
 # READING INPUT DATA | Extracting username and newStalk --------------------------
 
+
+# NAMES THAT ARE SUBSETS OF OTHER NAMES
+
 # Read the raw input from stdin
 newStalk = sys.stdin.read()	# This contains something of the form:
 							#	username=______&newStalk=_________
