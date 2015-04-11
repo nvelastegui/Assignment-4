@@ -65,6 +65,7 @@ topics.writelines(username)
 topics.writelines('\n')
 topics.writelines(newStatus)
 
+
 # Once data has been written, we can close the file.
 topics.close()
 
