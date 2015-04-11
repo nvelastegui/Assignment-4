@@ -167,22 +167,22 @@ users = open("users.csv","r")
 users_lines = users.readlines()
 users.close()
 
-# # Reopen the user file in write-mode and begin writing back the lines...
-# users = open("users.csv","w")
-# # We cycle through the list of lines that we took out before.
-# for current_line in users_lines:
-# 	#current_line = re.sub('\s$','',current_line) # Remove any spaces that may have been added at the end of the line.
-# 	if current_line.startswith(username):        # If there's a match between the current
-# 	  									         # line and the copy we extracted previously...
-# 		continue # Then we break the loop and restart.
-# 	users.write(current_line)
-# 	#users.write('\n')
-# # At the end, we write the modified line.
-# # Notice that no line break is added.
-# # This is just due to the formatting of the file.
-# users.write(new_user_info)
-# # Close the file.
-# users.close()
+# Reopen the user file in write-mode and begin writing back the lines...
+users = open("users.csv","w")
+# We cycle through the list of lines that we took out before.
+for current_line in users_lines:
+	#current_line = re.sub('\s$','',current_line) # Remove any spaces that may have been added at the end of the line.
+	if current_line.startswith(username):        # If there's a match between the current
+	  									         # line and the copy we extracted previously...
+		users.write(new_user_info)
+		users.write('\n')
+		continue # Then we break the loop and restart.
+	users.write(current_line)
+# At the end, we write the modified line.
+# Notice that no line break is added.
+# This is just due to the formatting of the file.
+# Close the file.
+users.close()
 
 # With users.csv appended, we can generate the html page notifying the user.
 # It also provides a link for the user to return to their feed bowl.
