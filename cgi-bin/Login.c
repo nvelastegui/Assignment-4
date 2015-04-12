@@ -67,7 +67,7 @@ int main (void){
 			printf("Welcome back");
 			printf("</p>");
 //Here goes the newsfeed 
-			printf("<a href = ../index.html> Continue... --> </a>");
+			printf("<a href =../feedbowl.html> Continue... --> </a>");
 		}	
 		else {
 			printf("<p>");	
