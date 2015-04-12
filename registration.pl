@@ -12,7 +12,7 @@ my $username = param ('username');
 my $password = param('password');
 
 #boolean is true when no other username exists that matches what was entered
-my $boolean = 'true';
+my $boolean = 0;
 
 #read from csv file to validate username
 open (ReadFILE, '< members.csv') or $boolean = 'true';
@@ -21,14 +21,46 @@ while (my $line = <ReadFILE>)
 {
 	
         my @word = split/,/,$line;
-	if ($word[0] eq "$username")
+	if (($word[0] eq "")||($word[1] eq "") || ($word[2] eq ""))
 	{
-		$boolean = 'false';
+		$boolean = 2;
+	}
+	elsif ($word[0] eq "$username")
+        {
+                $boolean = 1;
+        }
+	else
+	{
+		$boolean = 0;
 	}
 }
 
+if ($boolean == 2)
+{
+	my $htmlF = qq{
+        <html>
+        <head>
+                <title>Fail to register</title>
+        </head>
+        <body>
+                <img src="Image/jpg/LOGO1.jpg" width="20%" height="auto">
+                <table align="right" cellspacing="40x">
+                        <tr>
+                                <td width="50%">
+                                        <h1><b>Registration Failed<b><h1>
+                                        <p>Please do not leave blank</p>
+                                        <h2><a href="registrationHTML.html" target="_self">Try Again</a></h2>
+                                </td>
+                                <td width="50%"><img src="Image/jpg/Sorry.jpg" width="75%" height="auto"></td>
+                        </tr>
+                </table>
+        </body>
+        </html>};
+        print $htmlF;
+
+}
 #when boolena is false, display error message and a link back to the login page
-if ($boolean eq 'false')
+elsif($boolean == 1)
 {
 	my $htmlF = qq{
 	<html>
@@ -40,13 +72,8 @@ if ($boolean eq 'false')
 		<table align="right" cellspacing="40x">
 			<tr>
 				<td width="50%">
-					<p>Dear $username,</p>
-					<p>The Admissions Committee has completed its review of your application. I am very sorry to tell you that we are unable to offer you admission to Raccooner because <b>your username is already existed</b>.</P>
-					<p>Please understand that this is in no way a judgment of you as a raccooner, since our decision has more to do with the applicant pool than anything else - many of our raccooners have to come up with a new username because we want our raccooners to be unique.</p>
-					<p>I wish you the very best in all of your future endeavors.</p>
-					<p>Sincerely,</p>
-					<p>Racconner Committe</p>
-					<p>Dean of Admission</p><br>
+					<h1><b>Registration Failed<b><h1>
+					<p>username already existed</p>
 					<h2><a href="registrationHTML.html" target="_self">Try Again</a></h2>
 				</td>
 				<td width="50%"><img src="Image/jpg/Sorry.jpg" width="75%" height="auto"></td>
@@ -81,7 +108,7 @@ else
 					<p>Sincerely,</p>
 					<p>Racconner Committe</p>
 					<p>Dean of Admission</p><br>
-					<h2>Ready to Coon? <a href="www.google.ca" target="_self"> Login</a></h2>
+					<h2>Ready to Coon? <a href="Welcome.html" target="_self"> Login</a></h2>
 				</td>
 				<td width="60%"><img src="Image/jpg/Congratulations.jpg" width="100%" height="auto"></td>
 			</tr>
