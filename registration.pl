@@ -100,7 +100,7 @@ else
 		<title>Congratulations</title>
 	</head>
 	<body>
-		<img src="Image/jpg/LOGO1.jpg" width="20%" height="auto">
+		<img src="./Image/jpg/LOGO1.jpg" width="20%" height="auto">
 		<table align="right" cellspacing="40x">
 			<tr>
 				<td width="40%">
@@ -113,7 +113,7 @@ else
 					<p>Dean of Admission</p><br>
 					<h2>Ready to Coon? <a href="Welcome.html" target="_self"> Login</a></h2>
 				</td>
-				<td width="60%"><img src="Image/jpg/Congratulations.jpg" width="100%" height="auto"></td>
+				<td width="60%"><img src="./Image/jpg/Congratulations.jpg" width="100%" height="auto"></td>
 			</tr>
 		</table>
 	</body>
