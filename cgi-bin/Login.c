@@ -48,9 +48,9 @@ int main (void){
 	username[i-9]=',';
 	username2[i-9]='\0';
 	username[i-8]='\0';
-//	printf("<p>");
-//	printf("%s",username2);
-//	printf("</p>");
+	printf("<p>");
+	printf("%s",username);
+	printf("</p>");
 	
 	int usernameSize= strlen(username);
 	int newStart= 9	+ usernameSize+9;
@@ -65,11 +65,15 @@ int main (void){
 	}
 	password[i-newStart]=',';
 	password[i-newStart+1]='\0';
-//	printf("<p>");
-//	printf("%d,%s",i,  password);
-//	printf("</p>");
-	while((fscanf(data, "%s %s %s", fuser, fname, fpass))==3){
-//		printf("<p>%s %s %s</p>", fuser, fname, fpass);
+	printf("<p>");
+	printf("%d,%s",i,  password);
+	printf("</p>");
+	char line[200];
+	
+	while(fgets(line, 200, data)!=NULL){
+		sscanf(line, "%s %s %s", fuser, fname, fpass);
+			
+		printf("<p>%s %s %s</p>", fuser, fname, fpass);
 		if(strcmp(fuser,username)==0 && strcmp(fpass, password)==0){
 			printf("<p>");
 			printf("Welcome back");
