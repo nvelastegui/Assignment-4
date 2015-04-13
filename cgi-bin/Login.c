@@ -42,10 +42,10 @@ int main (void){
 	i++;
 	}
 	username[i-9]=',';
-	username[i+8]='\0';
-	printf("<p>");
-	printf("%s",username);
-	printf("</p>");
+	username[i-8]='\0';
+//	printf("<p>");
+//	printf("%s",username);
+//	printf("</p>");
 	
 	int usernameSize= strlen(username);
 	int newStart= 9	+ usernameSize+9;
@@ -60,16 +60,16 @@ int main (void){
 	}
 	password[i-newStart]=',';
 	password[i-newStart+1]='\0';
-	printf("<p>");
-	printf("%d,%s",i,  password);
-	printf("</p>");
+//	printf("<p>");
+//	printf("%d,%s",i,  password);
+//	printf("</p>");
 	while((fscanf(data, "%s %s %s", fuser, fname, fpass))==3){
-		printf("<p>%s %s %s</p>", fuser, fname, fpass);
+//		printf("<p>%s %s %s</p>", fuser, fname, fpass);
 		if(strcmp(fuser,username)==0 && strcmp(fpass, password)==0){
 			printf("<p>");
 			printf("Welcome back");
 			printf("</p>");
-//Here goes the newsfeed 
+			//Here goes the newsfeed 
 			printf("<a href =../feedbowl.html> Continue... --> </a>");
 			fclose(data);
 			printf("</body></font></html>");
