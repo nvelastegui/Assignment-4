@@ -220,9 +220,4 @@ print "<input type=\"hidden\" name=\"username\" value=\"" + username + "\">"
 print "<input type=\"submit\" value=\"To the feed bowl!\">"
 print "</form>"
 
-print "<font color=\"white\"><h4>" + user_info + "</h4></font>"
-print "<font color=\"white\"><h4>" + new_user_info + "</h4></font>"
-print "<font color=\"white\"><h4>" + user_info + "</h4></font>"
-
-
 print "</body></html>"

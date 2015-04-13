@@ -6,9 +6,18 @@
 # ID: 260521419
 
 import re
+import os, sys
 
 # VARIABLES AND SUCH
-username = "unholymist"
+# The username is sent from the login page, and here it is read and stored as in a variable.
+username = "Sample" # Define it as something in case the read does not work. (Debugging)
+
+# Read the raw input from stdin
+username = sys.stdin.read()	# This contains something of the form:
+								#	username=______
+
+# Make it usable.
+username = re.sub('username=','',username)
 
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of User's Friends-------------------------------
