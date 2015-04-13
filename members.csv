@@ -1,7 +1,7 @@
-Aimee, Aimee, 123, john, ZZZ, Char
-john, John, smith,, LSansa, AStark, Aimee
+Aimee, Aimee, 123, john, ZZZ, Char, AStark
+john, John, smith, , LSansa, AStark, Aimee
 Jane1, Jane, 123, Aimee, Niina, thatoneguy, thatJohnGuy, LSansa, john
-b, adf, fads,, john
+b, adf, fads, , john
 AStark, Arya, winteriscoming, 
 LSansa, Lady+Sansa, thenorthremembers, 
 JohnSnow, John, youknownothing,  , Aimee
@@ -12,9 +12,9 @@ thatoneguy, Nicolas, awfulpassword, Aimee, john, Jane1, b, AStark, LSansa, Niina
 raccoonGuy, Nicolas+guy, password,      
 thatJohnGuy, John+Smith, passwerd,   
 AStark, Aimee, 123,   
-Rad, Aimee, rad,   
+Rad, Aimee, rad,  , 123, Apple
 Johnster, johnny, dudeman,   
-Rad, Aimee, rad,   
+Rad, Aimee, rad,  , 123, Apple
 LSansa, Arya, 456,   
 567, Aimee, 9,   
 imAGhost, Holy+Ghost, ghost,   
