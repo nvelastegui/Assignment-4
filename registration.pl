@@ -21,6 +21,7 @@ open (ReadFILE, '< members.csv') or $boolean = 'true';
 while (my $line = <ReadFILE>)
 {
 	
+
         my @word = split/,/,$line;
 	if (($username eq "")||($name eq "") || ($password eq ""))
 	{
@@ -30,6 +31,7 @@ while (my $line = <ReadFILE>)
 	elsif ($word[0] eq "$username")
         {
                 $boolean = 1;
+		last;
         }
 	else
 	{
@@ -87,7 +89,7 @@ elsif($boolean == 1)
 	
 }
 #when boolean is true, append the information to the csv, display congratulation page and a link back to the welcome page
-else
+elsif ($boolean == 0)
 {
 	$name =~ s/ /+/g;	
 	open (AppendFILE,'>>members.csv');
