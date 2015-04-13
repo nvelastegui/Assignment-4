@@ -39,7 +39,7 @@ int main (void){
 	while(string[i]!='&'){
 //		if(string[i]!='+'){
 		username[i-9]=string[i];
-		username2[i-9];
+		username2[i-9]=string[i];
 //		}
 //		else
 //			username[i-9]=' ';
@@ -48,9 +48,9 @@ int main (void){
 	username[i-9]=',';
 	username2[i-9]='\0';
 	username[i-8]='\0';
-//	printf("<p>");
-//	printf("%s",username);
-//	printf("</p>");
+	printf("<p>");
+	printf("%s",username2);
+	printf("</p>");
 	
 	int usernameSize= strlen(username);
 	int newStart= 9	+ usernameSize+9;
@@ -76,9 +76,12 @@ int main (void){
 			printf("</p>");
 			//Here goes the newsfeed 
 //			printf("<a href =../feedbowl.html> Continue... --> </a>");
-			printf("<form name='news' action='../MyFacebookPage.py' method='post'>");
-			printf("<input type='hidden' name='username' value='username2'>");
-			
+			printf("<form name=\"reload\"  action=\"../MyFacebookPage.py\" method=\"post\">");
+			printf("<input type=\"hidden\" name=\"username\" value=\"%s\">",username2);
+			printf("<input type=\"submit\" value = \"Continue\">");
+			printf("</form>");			
+
+
 			fclose(data);
 			printf("</body></font></html>");
 			return 0;
