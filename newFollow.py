@@ -42,7 +42,7 @@ newStalk = re.sub('[\d\w\s$]*&','',newStalk)
 # GENERATING LIST OF MEMBERS | Extracting list of members ------------------------
 								#	As in MyFacebookPage.py
 
-users = open("users.csv","r")
+users = open("members.csv","r")
 user_list = ""
 
 for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
@@ -67,7 +67,7 @@ users.close()
 									# the proper changes or send the user to the
 									# proper error page.
 
-# With the input properly parsed, we have to appropriately append the users.csv file.
+# With the input properly parsed, we have to appropriately append the members.csv file.
 
 # Now there are probably hundreds of ways of doing this... but the method I decided on:
 
@@ -77,10 +77,10 @@ users.close()
 # 4. Add the newStalk to the end of the saved string (with the appropriate formatting).
 # 5. Append the modified string to the end of the file.
 
-# This works fine since we are using a simple linear search for the users.csv and topic.csv files.
+# This works fine since we are using a simple linear search for the members.csv and topic.csv files.
 
 # Using a modifed version of the method to find a specific line (from MyFacebookPage.py):
-users = open("users.csv","r")
+users = open("members.csv","r")
 user_info = ""
 for iteration in range(1,5000):
 	current_line = users.readline() # Read the current line. 
@@ -161,14 +161,15 @@ elif newStalk not in user_list:
 # and we must add the new user to the list of stalks...
 # Now we have the original user line and the new user line.
 new_user_info = user_info + ", " + newStalk
+new_user_info = re.sub(',, ',', ',new_user_info) # Fixing a bug due to formatting. Too late to redo formatting style.
 
 # Reopen the user file in read-mode and construct a set from all the lines in it.
-users = open("users.csv","r")
+users = open("members.csv","r")
 users_lines = users.readlines()
 users.close()
 
 # Reopen the user file in write-mode and begin writing back the lines...
-users = open("users.csv","w")
+users = open("members.csv","w")
 # We cycle through the list of lines that we took out before.
 for current_line in users_lines:
 	#current_line = re.sub('\s$','',current_line) # Remove any spaces that may have been added at the end of the line.
@@ -184,7 +185,7 @@ for current_line in users_lines:
 # Close the file.
 users.close()
 
-# With users.csv appended, we can generate the html page notifying the user.
+# With members.csv appended, we can generate the html page notifying the user.
 # It also provides a link for the user to return to their feed bowl.
 
 print "Content-Type:text/html;charset=iso-8859-1\n\n"
@@ -219,10 +220,5 @@ print "<form align=\"center\" action=\"MyFacebookPage.py\" method=\"post\">"
 print "<input type=\"hidden\" name=\"username\" value=\"" + username + "\">"
 print "<input type=\"submit\" value=\"To the feed bowl!\">"
 print "</form>"
-
-print "<font color=\"white\"><h4>" + user_info + "</h4></font>"
-print "<font color=\"white\"><h4>" + new_user_info + "</h4></font>"
-print "<font color=\"white\"><h4>" + user_info + "</h4></font>"
-
 
 print "</body></html>"

@@ -19,10 +19,13 @@ int main (void){
 	
 
 	char username[200];
+	char username2[200];
 	char password[200];
+	
 	char fuser[200];
 	char fname[200];
 	char fpass[200];
+	
 	
 	fgets(string, size+1, stdin);
 //	printf("<p>");
@@ -35,16 +38,18 @@ int main (void){
 	i=9;
 	while(string[i]!='&'){
 //		if(string[i]!='+'){
-			username[i-9]=string[i];
+		username[i-9]=string[i];
+		username2[i-9]=string[i];
 //		}
 //		else
 //			username[i-9]=' ';
 	i++;
 	}
 	username[i-9]=',';
+	username2[i-9]='\0';
 	username[i-8]='\0';
 //	printf("<p>");
-//	printf("%s",username);
+//	printf("%s",username2);
 //	printf("</p>");
 	
 	int usernameSize= strlen(username);
@@ -70,7 +75,13 @@ int main (void){
 			printf("Welcome back");
 			printf("</p>");
 			//Here goes the newsfeed 
-			printf("<a href =../feedbowl.html> Continue... --> </a>");
+//			printf("<a href =../feedbowl.html> Continue... --> </a>");
+			printf("<form name=\"reload\"  action=\"../MyFacebookPage.py\" method=\"post\">");
+			printf("<input type=\"hidden\" name=\"username\" value=\"%s\">",username2);
+			printf("<input type=\"submit\" value = \"Continue\">");
+			printf("</form>");			
+
+
 			fclose(data);
 			printf("</body></font></html>");
 			return 0;
