@@ -11,6 +11,7 @@ my $name = param('name');
 my $username = param ('username');
 my $password = param('password');
 
+
 #boolean is true when no other username exists that matches what was entered
 my $boolean = 0;
 
@@ -21,9 +22,10 @@ while (my $line = <ReadFILE>)
 {
 	
         my @word = split/,/,$line;
-	if (($word[0] eq "")||($word[1] eq "") || ($word[2] eq ""))
+	if (($username eq "")||($name eq "") || ($password eq ""))
 	{
 		$boolean = 2;
+		last;
 	}
 	elsif ($word[0] eq "$username")
         {
@@ -87,6 +89,7 @@ elsif($boolean == 1)
 #when boolean is true, append the information to the csv, display congratulation page and a link back to the welcome page
 else
 {
+	$name =~ s/ /+/g;	
 	open (AppendFILE,'>>members.csv');
 	print AppendFILE "$username, $name, $password \n";
 	close (AppendFILE);
