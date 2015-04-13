@@ -48,9 +48,9 @@ int main (void){
 	username[i-9]=',';
 	username2[i-9]='\0';
 	username[i-8]='\0';
-	printf("<p>");
-	printf("%s",username2);
-	printf("</p>");
+//	printf("<p>");
+//	printf("%s",username2);
+//	printf("</p>");
 	
 	int usernameSize= strlen(username);
 	int newStart= 9	+ usernameSize+9;
