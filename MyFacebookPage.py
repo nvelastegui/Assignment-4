@@ -18,8 +18,6 @@ username = sys.stdin.read()	# This contains something of the form:
 # Make it usable.
 username = re.sub('username=','',username)
 
-username = "thatoneguy"
-
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of User's Friends-------------------------------
 
@@ -44,7 +42,7 @@ user_friendlist = user_friendlist.strip(username + ", ")
 
 # However, we must now remove the full name and password from the string.
 # We can use regular expressions for this, notably:
-user_friendlist = re.sub('^\w*\+\s\w*, ','', user_friendlist)
+user_friendlist = re.sub('^\w*\s\w*, ','', user_friendlist)
 # Matches: any combination of word characters followed by a single space or none then followed by any combination of word characters
 # We do it again for the password:
 user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
@@ -129,10 +127,16 @@ print "<font color=\"white\" align=\"right\"><h1>Raccooner</h1></font>"
 print "<table width=\"100%\">"
 print "<tr>"
 print "<td align=\"right\">"
-print "<a href=\"http://google.ca\"><font color=\"white\">Refresh</font></a>"
+# FORM: Reload Page
+# Notice hidden tag for current username.
+print "<form name=\"reload\" action=\"MyFacebookPage.py\" method=\"post\">"
+print "<input type=\"hidden\" name=\"username\" value=\"" + username + "\">"
+print "<input type=\"submit\" value=\"Refresh\">"
+print "</form>"
+# END FORM: Reload Page
 print "</td>"
 print "<td align=\"right\" width=\"50\">"
-print "<a href=\"http://google.ca\"><font color=\"white\">Logout</font></a>"
+print "<a href=\"Welcome.html\"><font color=\"white\">Logout</font></a>"
 print "</td>"
 print "</tr>"
 print "</table>"
