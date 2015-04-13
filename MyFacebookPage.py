@@ -5,17 +5,27 @@
 # Coded by Nicolas Velastegui
 # ID: 260521419
 
-import re
+import re, os, sys
 
 # VARIABLES AND SUCH
-username = "unholymist"
+# The username is sent from the login page, and here it is read and stored as in a variable.
+username = "thatoneguy" # Define it as something in case the read does not work. (Debugging)
+
+# Read the raw input from stdin
+username = sys.stdin.read()	# This contains something of the form:
+								#	username=______
+
+# Make it usable.
+username = re.sub('username=','',username)
+
+username = "thatoneguy"
 
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of User's Friends-------------------------------
 
-# First we need to open the users.csv file to find the line pertaining to the currently
+# First we need to open the members.csv file to find the line pertaining to the currently
 # logged-in user.
-users = open("users.csv","r")
+users = open("members.csv","r")
 user_friendlist = ""
 for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
 	current_line = users.readline() # Read the current line. 
@@ -34,7 +44,7 @@ user_friendlist = user_friendlist.strip(username + ", ")
 
 # However, we must now remove the full name and password from the string.
 # We can use regular expressions for this, notably:
-user_friendlist = re.sub('^\w*\s\w*, ','', user_friendlist)
+user_friendlist = re.sub('^\w*\+\s\w*, ','', user_friendlist)
 # Matches: any combination of word characters followed by a single space or none then followed by any combination of word characters
 # We do it again for the password:
 user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
@@ -47,7 +57,7 @@ user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
 # (Notice I closed the file earlier. Now, reopening it will reset the
 # position of the pointer in the file.)
 
-users = open("users.csv","r")
+users = open("members.csv","r")
 user_list = ""
 
 for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
