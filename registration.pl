@@ -10,7 +10,7 @@ print "Content-type:text/html\r\n\r\n";
 my $name = param('name');
 my $username = param ('username');
 my $password = param('password');
-
+my $friends = " ";
 
 #boolean is true when no other username exists that matches what was entered
 my $boolean = 0;
@@ -91,7 +91,7 @@ else
 {
 	$name =~ s/ /+/g;	
 	open (AppendFILE,'>>members.csv');
-	print AppendFILE "$username, $name, $password \n";
+	print AppendFILE "$username, $name, $password, $friends \n";
 	close (AppendFILE);
 
 	my $htmlS = qq{
