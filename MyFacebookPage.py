@@ -42,7 +42,7 @@ user_friendlist = user_friendlist.strip(username + ", ")
 
 # However, we must now remove the full name and password from the string.
 # We can use regular expressions for this, notably:
-user_friendlist = re.sub('^\w*[\s\w\+]*, ','', user_friendlist)			# CHANGEDDDDD !!@11
+user_friendlist = re.sub('^\w*[\s\w\+]*, ','', user_friendlist)
 # Matches: any combination of word characters followed by a single space or none then followed by any combination of word characters
 # We do it again for the password:
 user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
@@ -65,7 +65,7 @@ for iteration in range(1,5000): # I suppose this means we have a maximum of 5000
 	# Instead of trying to extract the first part of the string (the username) we can
 	# just set up a regex to remove everything after the first term.
 	if iteration == 1:
-		user_list = user_list + re.sub(',[\w\d\s,\+]*$','', current_line) # CHANGED TO ADD PLUS SIGN !!!!!!!
+		user_list = user_list + re.sub(',[\w\d\s,\+]*$','', current_line)
 	else:
 		user_list = user_list + ", " + re.sub(',[\w\d\s,\+]*$','', current_line)
 
