@@ -18,8 +18,6 @@ username = sys.stdin.read()	# This contains something of the form:
 # Make it usable.
 username = re.sub('username=','',username)
 
-username = "thatoneguy"
-
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of User's Friends-------------------------------
 
