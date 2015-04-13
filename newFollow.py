@@ -161,6 +161,7 @@ elif newStalk not in user_list:
 # and we must add the new user to the list of stalks...
 # Now we have the original user line and the new user line.
 new_user_info = user_info + ", " + newStalk
+new_user_info = re.sub(',, ',', ',new_user_info) # Fixing a bug due to formatting. Too late to redo formatting style.
 
 # Reopen the user file in read-mode and construct a set from all the lines in it.
 users = open("members.csv","r")
