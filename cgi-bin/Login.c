@@ -42,7 +42,7 @@ int main (void){
 	i++;
 	}
 	username[i-9]=',';
-	username[i+8]='\0';
+	username[i-8]='\0';
 //	printf("<p>");
 //	printf("%s",username);
 //	printf("</p>");
