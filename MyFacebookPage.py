@@ -234,7 +234,7 @@ reverse_output = ""
 # Similar to before, we will have a maximum number of statuses of 5000.
 for iteration in range(0,5000):
 
-	if status_count > 10:
+	if status_count > 20:
 	 	break
 
 	current_user = topics.readline()
