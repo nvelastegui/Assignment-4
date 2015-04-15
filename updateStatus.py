@@ -61,6 +61,7 @@ topics = open("topic.csv","a")
 # and it had to do with formatting. Many methods didn't like my using of
 # \n... but this simple method of file.write() seems to work perfectly.
 topics.write(username)
+topics.write('\n')
 topics.write(newStatus)
 
 # Once data has been written, we can close the file.
