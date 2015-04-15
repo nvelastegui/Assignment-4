@@ -93,7 +93,7 @@ elsif ($boolean == 0)
 {
 	$name =~ s/ /+/g;	
 	open (AppendFILE,'>>members.csv');
-	print AppendFILE "$username, $name, $password, $username, \n";
+	print AppendFILE "$username, $name, $password, $username , \n";
 #changed $friend for username at the end
 	close (AppendFILE);
 
