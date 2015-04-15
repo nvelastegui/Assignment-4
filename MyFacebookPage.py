@@ -232,8 +232,8 @@ reverse_output = ""
 # Similar to before, we will have a maximum number of statuses of 5000.
 for iteration in range(0,5000):
 
-	if status_count > 20:
-	 	break
+	#if status_count > 20:
+	# 	break
 
 	current_user = topics.readline()
 	# This operation seemed to be adding spaces to the string, which caused problems later on.
@@ -247,7 +247,7 @@ for iteration in range(0,5000):
 	# at the beginning of a status update. That's no good. But it appeared to be limited to
 	# only one line, so, now, I wrote this section of the code to basically skip over a single
 	# empty line and break only if it repeteadly hits an empty line (EOF)
-	
+
 	if current_user == "":
 		current_user = topics.readline()
 
