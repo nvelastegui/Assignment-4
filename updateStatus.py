@@ -60,9 +60,9 @@ topics = open("topic.csv","a")
 # methods of printing to a file in Python. None of them seemed to work,
 # and it had to do with formatting. Many methods didn't like my using of
 # \n... but this simple method of file.writelines() seems to work perfectly.
-topics.writelines('\n')
+# topics.writelines('\n')
 topics.writelines(username)
-topics.writelines('\n')
+# topics.writelines('\n')
 topics.writelines(newStatus)
 
 
