@@ -240,9 +240,19 @@ for iteration in range(0,5000):
 	# Any added spaces are removed with the command below:
 	current_user = re.sub('\s','',current_user)
 
+	# ORIGINAL:
 	# If the line is empty, we break out of the loop and save some CPU cycles.
+
+	# So we discovered that when running from Windows browsers, an extra line would be added
+	# at the beginning of a status update. That's no good. But it appeared to be limited to
+	# only one line, so, now, I wrote this section of the code to basically skip over a single
+	# empty line and break only if it repeteadly hits an empty line (EOF)
+	
 	if current_user == "":
-	 	break
+		current_user = topics.readline()
+
+	if current_user == "":
+		break
 
 	current_status = topics.readline()
 
