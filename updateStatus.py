@@ -54,12 +54,13 @@ newStatus = re.sub('%29',')',newStatus)
 # Input it into the database.
 
 # Open the file, saved locally, with append mode.
-topics = open("topic.csv","a")
+topics = open("topic.csv","ab")
 
 # It took me a while to figure this out... I tried a number of different
 # methods of printing to a file in Python. None of them seemed to work,
 # and it had to do with formatting. Many methods didn't like my using of
 # \n... but this simple method of file.write() seems to work perfectly.
+topics.write('\n')
 topics.write(username)
 topics.write('\n')
 topics.write(newStatus)

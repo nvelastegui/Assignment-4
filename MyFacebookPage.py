@@ -23,7 +23,7 @@ username = re.sub('username=','',username)
 
 # First we need to open the members.csv file to find the line pertaining to the currently
 # logged-in user.
-users = open("members.csv","r")
+users = open("members.csv","rb")
 user_friendlist = ""
 for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
 	current_line = users.readline() # Read the current line. 
@@ -59,7 +59,7 @@ user_friendlist2 = re.sub('^[\s\w]*, ','', user_friendlist2)
 # (Notice I closed the file earlier. Now, reopening it will reset the
 # position of the pointer in the file.)
 
-users = open("members.csv","r")
+users = open("members.csv","rb")
 user_list = ""
 
 for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
@@ -216,7 +216,7 @@ print "</table>"
 
 print "<table width=\"100%\" cellspacing=\"20\" bgcolor=\"gray\">"
 
-topics = open("topic.csv","r")
+topics = open("topic.csv","rb")
 
 # Variables to hold current user and current status.
 current_user = ""

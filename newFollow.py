@@ -42,7 +42,7 @@ newStalk = re.sub('[\d\w\s$]*&','',newStalk)
 # GENERATING LIST OF MEMBERS | Extracting list of members ------------------------
 								#	As in MyFacebookPage.py
 
-users = open("members.csv","r")
+users = open("members.csv","rb")
 user_list = ""
 
 for iteration in range(1,5000): # I suppose this means we have a maximum of 5000 users right now.
@@ -80,7 +80,7 @@ users.close()
 # This works fine since we are using a simple linear search for the members.csv and topic.csv files.
 
 # Using a modifed version of the method to find a specific line (from MyFacebookPage.py):
-users = open("members.csv","r")
+users = open("members.csv","rb")
 user_info = ""
 for iteration in range(1,5000):
 	current_line = users.readline() # Read the current line. 
@@ -164,12 +164,12 @@ new_user_info = user_info + ", " + newStalk
 new_user_info = re.sub(',, ',', ',new_user_info) # Fixing a bug due to formatting. Too late to redo formatting style.
 
 # Reopen the user file in read-mode and construct a set from all the lines in it.
-users = open("members.csv","r")
+users = open("members.csv","rb")
 users_lines = users.readlines()
 users.close()
 
 # Reopen the user file in write-mode and begin writing back the lines...
-users = open("members.csv","w")
+users = open("members.csv","wb")
 # We cycle through the list of lines that we took out before.
 for current_line in users_lines:
 	#current_line = re.sub('\s$','',current_line) # Remove any spaces that may have been added at the end of the line.
