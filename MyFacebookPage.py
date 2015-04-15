@@ -99,6 +99,7 @@ print "</head>"
 
 # -- Set the background colour to black.
 print "<body bgcolor=\"black\">"
+print "<p><font color=\"white\">" + user_friendlist2 + "</font></p>"
 
 # Main Feed Page
 
