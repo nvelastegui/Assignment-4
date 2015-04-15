@@ -47,7 +47,8 @@ user_friendlist = re.sub('^\w*[\s\w\+]*, ','', user_friendlist)
 # We do it again for the password:
 user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
 
-user_friendlist2 = re.sub('^[\s\w]*, ','', user_friendlist)
+user_friendlist2 = user_friendlist
+user_friendlist2 = re.sub('^[\s\w]*, ','', user_friendlist2)
 
 # --------------------------------------------------------------------------------
 # USER DATABASE | Extracting List Of All Members ---------------------------------
