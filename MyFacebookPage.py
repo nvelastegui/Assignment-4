@@ -47,6 +47,7 @@ user_friendlist = re.sub('^\w*[\s\w\+]*, ','', user_friendlist)
 # We do it again for the password:
 user_friendlist = re.sub('^[\d\w]*, ','', user_friendlist)
 
+# user_friendlist excluding user for display purposes
 user_friendlist2 = user_friendlist
 user_friendlist2 = re.sub('^[\s\w]*, ','', user_friendlist2)
 
@@ -99,9 +100,6 @@ print "</head>"
 
 # -- Set the background colour to black.
 print "<body bgcolor=\"black\">"
-print "<p><font color=\"white\">" + user_friendlist2 + "</font></p>"
-print "<p><font color=\"white\">" + user_friendlist + "</font></p>"
-
 
 # Main Feed Page
 
@@ -234,7 +232,7 @@ reverse_output = ""
 # Similar to before, we will have a maximum number of statuses of 5000.
 for iteration in range(0,5000):
 
-	if status_count > 20:
+	if status_count > 9:
 	 	break
 
 	current_user = topics.readline()
